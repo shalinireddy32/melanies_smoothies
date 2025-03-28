@@ -14,7 +14,8 @@ name_on_order = st.text_input('Name on Smoothie:')
 st.write('Name on Smoothie will be:', name_on_order)
 
 # Get active Snowflake session
-#session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
 
 # Fetch data and convert to a Pandas DataFrame
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME')).to_pandas()
